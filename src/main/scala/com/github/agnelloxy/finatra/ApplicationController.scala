@@ -12,7 +12,7 @@ import com.twitter.finatra.httpclient.modules.HttpClientModule
 case class ExampleCaseClass(id: Option[Int], name: String)
 
 @Singleton
-class ApplicationController @Inject()(service: Service) extends Controller {
+class ApplicationController @Inject()(service: HttpClientService) extends Controller {
 
   get("/") { request: Request =>
     "Hello, world!"
@@ -28,7 +28,7 @@ class ApplicationController @Inject()(service: Service) extends Controller {
   }
 }
 
-class Service @Inject()(httpClient: HttpClient, mapper: FinatraObjectMapper) {
+class HttpClientService @Inject()(httpClient: HttpClient, mapper: FinatraObjectMapper) {
 
   def get: Future[Response] =
     httpClient.execute(RequestBuilder.get("http://www.google.com"))
