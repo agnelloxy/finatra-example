@@ -6,7 +6,8 @@ import com.twitter.finagle.http.{Request, Response}
 import com.twitter.finatra.httpclient.{HttpClient, RequestBuilder}
 import com.twitter.util.Future
 import javax.inject.{Inject, Singleton}
-import com.twitter.inject.conversions.future._
+import com.twitter.finatra.json.FinatraObjectMapper
+import com.twitter.finatra.httpclient.modules.HttpClientModule
 
 case class ExampleCaseClass(id: Option[Int], name: String)
 
@@ -27,12 +28,19 @@ class ApplicationController @Inject()(service: Service) extends Controller {
   }
 }
 
-@Singleton
-class Service @Inject()(httpClient: HttpClient) {
+class Service @Inject()(httpClient: HttpClient, mapper: FinatraObjectMapper) {
 
-  def get: Future[Response] = {
-    val r = httpClient.execute(RequestBuilder.get("http://www.google.com"))
-    r
-  }
+  def get: Future[Response] =
+    httpClient.execute(RequestBuilder.get("http://www.google.com"))
+
+}
+
+object MyHttpClientModule extends HttpClientModule {
+
+  val host = "www.fakeresponse.com"
+  val port = 80
+
+  override val dest = s"$host:$port"
+  override def defaultHeaders: Map[String, String] = Map("Host" -> host)
 
 }

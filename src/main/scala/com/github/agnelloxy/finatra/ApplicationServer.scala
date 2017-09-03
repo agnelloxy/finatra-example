@@ -9,6 +9,8 @@ object ApplicationServerMain extends ApplicationServer
 
 class ApplicationServer extends HttpServer {
 
+  override val modules = Seq(MyHttpClientModule)
+
   override def configureHttp(router: HttpRouter) {
     router
       .filter[LoggingMDCFilter[Request, Response]]
