@@ -1,9 +1,11 @@
 package com.github.agnelloxy.finatra
 
+import com.github.agnelloxy.finatra.controller.ApplicationController
 import com.twitter.finagle.http.{Request, Response}
 import com.twitter.finatra.http.HttpServer
 import com.twitter.finatra.http.filters.{CommonFilters, LoggingMDCFilter, TraceIdMDCFilter}
 import com.twitter.finatra.http.routing.HttpRouter
+import com.github.agnelloxy.finatra.integration.module._
 
 object ApplicationServerMain extends ApplicationServer
 
