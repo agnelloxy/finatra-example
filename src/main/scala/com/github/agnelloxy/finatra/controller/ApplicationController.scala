@@ -4,7 +4,7 @@ import javax.inject.{Inject, Singleton}
 
 import com.github.agnelloxy.finatra.domain.{BitcoinAddress, TransactionLogId}
 import com.github.agnelloxy.finatra.integration.SampleTransactionLogGenerationServiceImpl
-import com.twitter.finagle.http.Request
+import com.twitter.finagle.http._
 import com.twitter.finatra.http.Controller
 
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -24,6 +24,7 @@ class ApplicationController @Inject()(
   get("/send") { request: Request =>
     val futureResult = service.getTransactionLog(BitcoinAddress("xxx"))
     futureResult map { result =>
+      println(result.contentString)
       response.ok.body(result.statusCode)
     }
   }
