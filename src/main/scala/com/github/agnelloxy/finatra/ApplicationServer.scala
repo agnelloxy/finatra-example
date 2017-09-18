@@ -13,6 +13,9 @@ class ApplicationServer extends HttpServer {
 
   override def modules = Seq(TypesafeConfigModule, MyHttpClientModule, SlickMysqlModule)
 
+  override val defaultFinatraHttpPort = ":9000"
+  override val defaultHttpPort = 9001 //??
+
   override def configureHttp(router: HttpRouter) {
     router
       .filter[LoggingMDCFilter[Request, Response]]
