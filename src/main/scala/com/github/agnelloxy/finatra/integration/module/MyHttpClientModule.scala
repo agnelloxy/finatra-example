@@ -4,7 +4,7 @@ import com.twitter.finatra.httpclient.modules.HttpClientModule
 
 object MyHttpClientModule extends HttpClientModule {
 
-  val host = "jsonplaceholder.typicode.com"
+  val host = "blockchain.info"
   val port = 443
 
   override val sslHostname = Some(host)

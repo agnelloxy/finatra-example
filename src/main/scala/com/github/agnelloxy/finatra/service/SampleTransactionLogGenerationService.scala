@@ -15,7 +15,7 @@ trait SampleTransactionLogGenerationService extends BaseService {
   val mapper: FinatraObjectMapper
 
   def getTransactionLog(bitcoinAddress: BitcoinAddress): Future[Response] =
-    httpClient.execute(RequestBuilder.get("/posts#com.typicode.jsonplaceholder.Http$"))
+    httpClient.execute(RequestBuilder.get(s"/ja/rawaddr/${bitcoinAddress.value}"))
 
   def findById(id: TransactionLogId) =
     sampleTransactionLogRepository.findById(id)
