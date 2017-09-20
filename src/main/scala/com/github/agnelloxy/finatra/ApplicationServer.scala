@@ -11,7 +11,7 @@ object ApplicationServerMain extends ApplicationServer
 
 class ApplicationServer extends HttpServer {
 
-  override def modules = Seq(TypesafeConfigModule, MyHttpClientModule, SlickMysqlModule)
+  override def modules = Seq(TypesafeConfigModule, SlickMysqlModule) ++  HttpClientModules.modules
 
   override val defaultFinatraHttpPort = ":9000"
   override val defaultHttpPort = 9001 //??

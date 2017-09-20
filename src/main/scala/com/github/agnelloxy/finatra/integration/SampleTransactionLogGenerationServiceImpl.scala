@@ -7,9 +7,10 @@ import com.github.agnelloxy.finatra.service.SampleTransactionLogGenerationServic
 import com.google.inject.Inject
 import com.twitter.finatra.httpclient.HttpClient
 import com.twitter.finatra.json.FinatraObjectMapper
+import javax.inject.Named
 
 class SampleTransactionLogGenerationServiceImpl @Inject()(
-  val httpClient: HttpClient,
+  @Named("blockChain") val httpClient: HttpClient,
   val db: SlickMysqlModule.db,
   val mapper: FinatraObjectMapper
   ) extends SampleTransactionLogGenerationService {
