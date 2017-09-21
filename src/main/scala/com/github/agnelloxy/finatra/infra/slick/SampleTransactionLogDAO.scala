@@ -1,13 +1,15 @@
 package com.github.agnelloxy.finatra.infra.slick
 
-import com.github.agnelloxy.finatra.integration.module._
-import com.github.tototoshi.slick.MySQLJodaSupport._
 import com.github.agnelloxy.finatra.domain._
 import com.github.agnelloxy.finatra.repository.SampleTransactionLogRepository
+import com.github.agnelloxy.finatra.integration.module.DatabaseConfigProvider
+import slick.basic.DatabaseConfig
+import slick.jdbc.JdbcProfile
 
-class SampleTransactionLogDAO (db: SlickMysqlModule.db)
-  extends SampleTransactionLogRepository {
-  import driver.api._
+class SampleTransactionLogDAO (val dbConfig: DatabaseConfig[JdbcProfile])
+  extends SampleTransactionLogRepository
+  with DatabaseConfigProvider[JdbcProfile] {
+  import profile.api._
 
   implicit def bitcoinMapper = MappedColumnType.base[Bitcoin, Long](_.value, Bitcoin)
   implicit def transactionLogIdMapper = MappedColumnType.base[TransactionLogId, Long](_.value, TransactionLogId)
