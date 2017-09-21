@@ -13,7 +13,7 @@ import slick.jdbc.JdbcProfile
 
 class SampleTransactionLogGenerationServiceImpl @Inject()(
   @Named("blockChain") val httpClient: HttpClient,
-  val dbConfig: DatabaseConfig[JdbcProfile],
+  @Named("testdb") val dbConfig: DatabaseConfig[JdbcProfile],
   val mapper: FinatraObjectMapper
   ) extends SampleTransactionLogGenerationService {
   val sampleTransactionLogRepository: SampleTransactionLogRepository = new SampleTransactionLogDAO(dbConfig)
