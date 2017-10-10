@@ -25,3 +25,7 @@ libraryDependencies ++= Seq(
   "com.github.tototoshi" %% "slick-joda-mapper" % versions.slickJoda,
   "mysql" % "mysql-connector-java" % versions.mysqljdbc
 )
+
+flywayUrl := "jdbc:mysql://localhost/test_db"
+flywayUser := "root"
+flywayPassword := ""
