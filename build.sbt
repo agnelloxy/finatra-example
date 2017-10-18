@@ -23,9 +23,13 @@ libraryDependencies ++= Seq(
   "com.typesafe.slick" %% "slick" % versions.slick,
   "com.typesafe.slick" %% "slick-hikaricp" % versions.slick,
   "com.github.tototoshi" %% "slick-joda-mapper" % versions.slickJoda,
-  "mysql" % "mysql-connector-java" % versions.mysqljdbc
+  "mysql" % "mysql-connector-java" % versions.mysqljdbc,
+  "org.scalactic" %% "scalactic" % "3.0.4",
+  "org.scalatest" %% "scalatest" % "3.0.4" % "test",
+  "com.h2database" % "h2" % "1.3.176"
 )
 
 flywayUrl := "jdbc:mysql://localhost/test_db"
 flywayUser := "root"
 flywayPassword := ""
+

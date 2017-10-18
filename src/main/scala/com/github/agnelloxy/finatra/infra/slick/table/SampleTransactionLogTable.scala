@@ -19,6 +19,6 @@ trait SampleTransactionLogTable
     def * = (id.?, totalReceived, totalSent) <> (SampleTransactionLog.tupled, SampleTransactionLog.unapply)
   }
 
-  def companies = TableQuery[SampleTransactionLogTable]
+  def sampleTransactionLogs = TableQuery[SampleTransactionLogTable]
 
 }
